@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional, Type, TypeVar
+from typing import Any, Dict, List, Optional, Type, TypeVar
 
 from fastapi_users import schemas
 from pydantic import EmailStr, BaseModel
@@ -33,7 +33,6 @@ class CreateUpdateDictModel(BaseModel):
             exclude_unset=True,
             exclude={
                 "id",
-                "is_superuser",
                 "is_active",
                 "is_verified",
                 "oauth_accounts",
@@ -63,12 +62,30 @@ class UserRead(schemas.BaseUser[int]):
     is_superuser: bool = False
     is_verified: bool = False
 
+class UserReturn(BaseModel):
+    email: str
+    username: str
+
 class StudentCreate(BaseModel): 
     id: int
     first_name: str
     last_name: str
     group_id: int
     user_id: int
+
+class StudentRead(BaseModel):
+    id: int
+    first_name: str
+    last_name: str
+    user_id: int
+
+class ByFilterStudentRead(BaseModel):
+    id: int
+    email: str
+    username: str
+    first_name: str
+    last_name: str
+
 
 class StudentInsert(BaseModel):
     first_name: str

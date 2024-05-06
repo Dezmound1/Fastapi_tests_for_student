@@ -2,12 +2,11 @@ from typing import Generic, Optional
 from pydantic import BaseModel
 
 from fastapi import Depends, HTTPException, Request, Response
-from fastapi_users import BaseUserManager, IntegerIDMixin, exceptions, models, schemas
+from fastapi_users import BaseUserManager, IntegerIDMixin, exceptions, models
 from sqlalchemy import insert
-from sqlalchemy.ext.asyncio import AsyncSession, session
 from sqlalchemy.future import select
 
-from db.pg import get_async_session, async_session_maker
+from db.pg import async_session_maker
 from conf import SECRET_AUTH
 from model.auth import Student, Teacher, User, Group
 from schema.auth import StudentInsert, TeacherInsert, UserCreate
